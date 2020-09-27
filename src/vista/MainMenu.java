@@ -14,6 +14,28 @@ public class MainMenu extends PApplet {
 	PImage INTRO1;
 	PImage INTRO2;
 	PImage GAME;
+	
+	// GAME IMAGES
+	PImage BASE;
+	PImage D_CLOSEDWINDOW;
+	PImage D_OPENWINDOW;
+	PImage S_CLOSEDWINDOW;
+	PImage S_OPENWINDOW;
+	PImage DEER ;
+	
+	PImage EMPTYSOUP;
+	PImage GL1;
+	PImage GL2;
+	PImage GL3;
+	PImage PARALLAX1;
+	PImage WINDMILL;
+	
+	PImage S_PHOTOS;
+	PImage S_SOUP1;
+	PImage S_SOUP2;
+	PImage S_SOUP3;
+	PImage S_SOUPS;
+	
 	int state;
 
 	public static void main(String[] args) {
@@ -38,6 +60,27 @@ public class MainMenu extends PApplet {
 		INTRO2 = loadImage ("images/INTRO2.png");
 		GAME = loadImage ("images/GAME.png");
 		
+		//LOAD IMAGES GAME
+		
+		BASE = loadImage ("images/BASE.png");
+		D_CLOSEDWINDOW  = loadImage ("images/D-CLOSEDWINDOW.png");
+		D_OPENWINDOW  = loadImage ("images/D-OPENWINDOW.png");
+		S_CLOSEDWINDOW  = loadImage ("images/S-CLOSEDWINDOW.png");
+		S_OPENWINDOW  = loadImage ("images/S-OPENWINDOW.png");
+		DEER   = loadImage ("images/DEER.png");
+		
+		EMPTYSOUP  = loadImage ("images/EMPTYSOUP.png");
+		GL1  = loadImage ("images/GL1.png");
+		GL2  = loadImage ("images/GL2.png");
+		GL3  = loadImage ("images/GL3.png");
+		PARALLAX1  = loadImage ("images/PARALLAX1.png");
+		WINDMILL  = loadImage ("images/WINDMILL.png");
+		
+		S_PHOTOS  = loadImage ("images/S-PHOTOS.png");
+		S_SOUP1  = loadImage ("images/S-SOUP1.png");
+		S_SOUP2  = loadImage ("images/S-SOUP2.png");
+		S_SOUP3  = loadImage ("images/S-SOUP2.png");
+		S_SOUPS  = loadImage ("images/S-SOUPS.png");
 		
 	}
 
@@ -66,7 +109,20 @@ public class MainMenu extends PApplet {
 			image (INTRO2, 0,0, 2304/2,1440/2);
 			break;
 		
-		
+		case 6:
+			
+			 
+			  float fgX=map(mouseX,0,800,0,-700);
+			  image(PARALLAX1,fgX,0,2304/2,1440/2);
+			  
+			  float bgX=map(mouseX,0,800,0,-100);
+			  image(DEER,bgX,0,2304/2,1440/2);
+			  
+			  image (BASE,0,0,2304/2,1440/2);
+			  
+			  image (D_OPENWINDOW,0,0,2304/2,1440/2);
+
+			break;
 		}
 		
 
@@ -121,6 +177,9 @@ public class MainMenu extends PApplet {
 					&& mouseY > 41 && mouseY < 41 + 106)
 				state = 4;
 			break;
+			
+		case 6:
+			
 		}
 		
 		
