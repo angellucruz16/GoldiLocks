@@ -14,6 +14,7 @@ public class MainMenu extends PApplet {
 	PImage INTRO1;
 	PImage INTRO2;
 	PImage GAME;
+	PImage GOLDILOCKS;
 	
 	// GAME IMAGES
 	PImage BASE;
@@ -35,8 +36,12 @@ public class MainMenu extends PApplet {
 	PImage S_SOUP2;
 	PImage S_SOUP3;
 	PImage S_SOUPS;
+	PImage WINDOW;
 	
 	int state;
+	boolean big;
+	boolean medium;
+	boolean small;
 
 	public static void main(String[] args) {
 		
@@ -47,11 +52,14 @@ public class MainMenu extends PApplet {
 
 
 	public void settings () {
-		size (2304/2,1440/2);
+		size (1328,830);
 		state = 6;
 	}
 
 	public void setup () {
+		big = false;
+		medium = false;
+		small = false;
 		
 		MENU = loadImage ("images/MENU.png");
 		STORY = loadImage ("images/STORY.png");
@@ -82,6 +90,9 @@ public class MainMenu extends PApplet {
 		S_SOUP3  = loadImage ("images/S-SOUP2.png");
 		S_SOUPS  = loadImage ("images/S-SOUPS.png");
 		
+		WINDOW = loadImage ("images/WINDOW.png");
+		GOLDILOCKS =loadImage ("images/GOLDILOCKS.png");
+		
 	}
 
 	public void draw () {
@@ -89,38 +100,45 @@ public class MainMenu extends PApplet {
 		switch (state) {
 		
 		case 1: 
-		image (MENU, 0,0, 2304/2,1440/2);
+		image (MENU, 0,0);
 		break;
 		
 		case 2:
-			image (STORY, 0,0, 2304/2,1440/2);
+			image (STORY, 0,0);
 			break;
 			
 			
 		case 3:	
-			image (INTRO, 0,0, 2304/2,1440/2);
+			image (INTRO, 0,0);
 		break;
 		
 		case 4:
-			image (INTRO1, 0,0, 2304/2,1440/2);
+			image (INTRO1, 0,0);
 			break;
 			
 		case 5:
-			image (INTRO2, 0,0, 2304/2,1440/2);
+			image (INTRO2, 0,0);
 			break;
 		
 		case 6:
 			
 			 
-			  float fgX=map(mouseX,0,width,0,-200);
-			  image(PARALLAX1,fgX+300,0,2304/2,1440/2);
+			//  float fgX=map(mouseX,0,width,0,-100);
+			 // image(PARALLAX1,fgX+300,0,2304/2,1440/2);
 			  
-			  float bgX=map(mouseX,0,width,0,-100);
-			  image(DEER,bgX+250,0,2304/2,1440/2);
-			  
-			  image (BASE,0,0,2304/2,1440/2);
-			  
-			  image (D_OPENWINDOW,0,0,2304/2,1440/2);
+			 // float bgX=map(mouseX,0,width,0,-50);
+			 // image(DEER,bgX+250,0,2304/2,1440/2);
+			
+			
+			
+			
+			 image (WINDOW,0,0);
+			 image (GAME,0,0);
+			 image (BASE,0,0);
+			 image (WINDOW,0,0);
+			 image (GOLDILOCKS, 0,0);
+			 
+			  hover(); //MÉTODO PARA MOSTRAR SELECCIONES
 			  
 			break;
 		}
@@ -133,55 +151,88 @@ public class MainMenu extends PApplet {
 		switch (state) {
 		
 		case 1:
-			if (mouseX > 714 && mouseX < 714 + 557
-				&& mouseY > 481 && mouseY < 481 + 106)
+			if (mouseX > 824 && mouseX < 824 + 322
+				&& mouseY > 553 && mouseY < 553 + 60)
 				state = 2;
-			if (mouseX > 40 && mouseX < 40 + 171
-					&& mouseY > 41 && mouseY < 41 + 106)
+			if (mouseX > 47 && mouseX < 47 + 97
+					&& mouseY > 47 && mouseY < 47 + 60)
 				exit();
 			break;
 		
 		case 2:
 		
-		if (mouseX > 752 && mouseX < 752 + 557
-				&& mouseY > 601 && mouseY < 601 + 106)
+		if (mouseX > 868 && mouseX < 868 + 322
+				&& mouseY > 693 && mouseY < 693 + 60)
 				state = 3;
-		if (mouseX > 40 && mouseX < 40 + 171
-				&& mouseY > 41 && mouseY < 41 + 106)
+		if (mouseX > 47 && mouseX < 47 + 97
+				&& mouseY > 47 && mouseY < 47 + 60)
 			state = 1;
 		 break;
 		 
 		case 3:
-			if (mouseX > 723 && mouseX < 723 + 557
-					&& mouseY > 414 && mouseY < 414 + 106)
+			if (mouseX > 834 && mouseX < 834 + 322
+					&& mouseY > 477 && mouseY < 477 + 60)
 					state = 4;
-			if (mouseX > 40 && mouseX < 40 + 171
-					&& mouseY > 41 && mouseY < 41 + 106)
+			if (mouseX > 47 && mouseX < 47 + 97
+					&& mouseY > 47 && mouseY < 47 + 60)
 				state = 2;
 			break;
 			
 		case 4:
-			if (mouseX > 674 && mouseX < 674 + 557
-					&& mouseY > 601 && mouseY < 601 + 106)
+			if (mouseX > 777 && mouseX < 777 + 322
+					&& mouseY > 692 && mouseY < 692 + 60)
 					state = 5;
-			if (mouseX > 40 && mouseX < 40 + 171
-					&& mouseY > 41 && mouseY < 41 + 106)
+			if (mouseX > 47 && mouseX < 47 + 97
+					&& mouseY > 47 && mouseY < 47 + 60)
 				state = 3;
 			break;
 			
 		case 5:
-			if (mouseX > 674 && mouseX < 674 + 557
-					&& mouseY > 601 && mouseY < 601 + 106)
+			if (mouseX > 777 && mouseX < 777 + 322
+					&& mouseY > 692 && mouseY < 692 + 60)
 					state = 6;
-			if (mouseX > 40 && mouseX < 40 + 171
-					&& mouseY > 41 && mouseY < 41 + 106)
+			if (mouseX > 47 && mouseX < 47 + 97
+					&& mouseY > 47 && mouseY < 47 + 60)
 				state = 4;
 			break;
 			
 		case 6:
+			if (mouseX > 47 && mouseX < 47 + 97
+					&& mouseY > 47 && mouseY < 47 + 60)
+				exit ();
 			
+			if (mouseX < 388 && mouseX < 388 + 256
+			&& mouseY < 611 && mouseY < 611 + 105)
+				big = true;
+			
+			if 	(mouseX < 569 && mouseX < 569 + 118
+			&& mouseY < 534 && mouseY < 534 + 81)
+				medium = true;
+			
+			if (mouseX < 717 && mouseX < 717 + 78
+				&& mouseY < 552 && mouseY < 552 + 51)
+				small = true;
 		}
 		
 		
+	}
+	
+	public void hover () {
+		
+		if (big==false && medium == false && small == false //PRIMERA SOPA SELECTION
+			&& mouseX < 388 && mouseX < 388 + 151
+			&& mouseY < 506 && mouseY < 506 + 98)
+			image (S_SOUP1, 0,0);
+			
+		
+		if (big==true && medium == false && small == false  //SEGUNDA SOPA SELECTION
+				&& mouseX < 569 && mouseX < 569 + 118
+				&& mouseY < 534 && mouseY < 534 + 81)
+			image (S_SOUP2,0,0);
+		
+		if (big==true && medium == true && small == false  //SEGUNDA SOPA SELECTION
+				&& mouseX < 717 && mouseX < 717 + 78
+				&& mouseY < 552 && mouseY < 552 + 51)
+			image (S_SOUP3,0,0);
 	}
 }
