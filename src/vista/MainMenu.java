@@ -49,8 +49,22 @@ public class MainMenu extends PApplet {
 		image (MENU, 0,0, 2304/2,1440/2);
 		break;
 		
+		case 2:
+			image (STORY, 0,0, 2304/2,1440/2);
+			break;
+			
+			
+		case 3:	
+			image (INTRO, 0,0, 2304/2,1440/2);
+		break;
 		
-		
+		case 4:
+			image (INTRO1, 0,0, 2304/2,1440/2);
+			break;
+			
+		case 5:
+			image (INTRO2, 0,0, 2304/2,1440/2);
+			break;
 		
 		
 		}
@@ -58,5 +72,57 @@ public class MainMenu extends PApplet {
 
 	}
 	
-	
+	public void mousePressed () {
+		println (mouseX, mouseY);
+		switch (state) {
+		
+		case 1:
+			if (mouseX > 714 && mouseX < 714 + 557
+				&& mouseY > 481 && mouseY < 481 + 106)
+				state = 2;
+			if (mouseX > 40 && mouseX < 40 + 171
+					&& mouseY > 41 && mouseY < 41 + 106)
+				exit();
+			break;
+		
+		case 2:
+		
+		if (mouseX > 752 && mouseX < 752 + 557
+				&& mouseY > 601 && mouseY < 601 + 106)
+				state = 3;
+		if (mouseX > 40 && mouseX < 40 + 171
+				&& mouseY > 41 && mouseY < 41 + 106)
+			state = 1;
+		 break;
+		 
+		case 3:
+			if (mouseX > 723 && mouseX < 723 + 557
+					&& mouseY > 414 && mouseY < 414 + 106)
+					state = 4;
+			if (mouseX > 40 && mouseX < 40 + 171
+					&& mouseY > 41 && mouseY < 41 + 106)
+				state = 2;
+			break;
+			
+		case 4:
+			if (mouseX > 674 && mouseX < 674 + 557
+					&& mouseY > 601 && mouseY < 601 + 106)
+					state = 5;
+			if (mouseX > 40 && mouseX < 40 + 171
+					&& mouseY > 41 && mouseY < 41 + 106)
+				state = 3;
+			break;
+			
+		case 5:
+			if (mouseX > 674 && mouseX < 674 + 557
+					&& mouseY > 601 && mouseY < 601 + 106)
+					state = 6;
+			if (mouseX > 40 && mouseX < 40 + 171
+					&& mouseY > 41 && mouseY < 41 + 106)
+				state = 4;
+			break;
+		}
+		
+		
+	}
 }
