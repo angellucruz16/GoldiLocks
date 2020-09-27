@@ -48,7 +48,7 @@ public class MainMenu extends PApplet {
 
 	public void settings () {
 		size (2304/2,1440/2);
-		state = 1;
+		state = 6;
 	}
 
 	public void setup () {
@@ -112,16 +112,16 @@ public class MainMenu extends PApplet {
 		case 6:
 			
 			 
-			  float fgX=map(mouseX,0,800,0,-700);
-			  image(PARALLAX1,fgX,0,2304/2,1440/2);
+			  float fgX=map(mouseX,0,width,0,-200);
+			  image(PARALLAX1,fgX+300,0,2304/2,1440/2);
 			  
-			  float bgX=map(mouseX,0,800,0,-100);
-			  image(DEER,bgX,0,2304/2,1440/2);
+			  float bgX=map(mouseX,0,width,0,-100);
+			  image(DEER,bgX+250,0,2304/2,1440/2);
 			  
 			  image (BASE,0,0,2304/2,1440/2);
 			  
 			  image (D_OPENWINDOW,0,0,2304/2,1440/2);
-
+			  
 			break;
 		}
 		
