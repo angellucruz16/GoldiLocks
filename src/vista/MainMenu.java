@@ -25,9 +25,6 @@ public class MainMenu extends PApplet {
 	PImage DEER ;
 	
 	PImage EMPTYSOUP;
-	PImage GL1;
-	PImage GL2;
-	PImage GL3;
 	PImage PARALLAX1;
 	PImage WINDMILL;
 	
@@ -35,13 +32,16 @@ public class MainMenu extends PApplet {
 	PImage S_SOUP1;
 	PImage S_SOUP2;
 	PImage S_SOUP3;
-	PImage S_SOUPS;
 	PImage WINDOW;
+	PImage SOUP1CHAT;
+	
+	
 	
 	int state;
 	boolean big;
 	boolean medium;
 	boolean small;
+	int segundos;
 
 	public static void main(String[] args) {
 		
@@ -60,6 +60,7 @@ public class MainMenu extends PApplet {
 		big = false;
 		medium = false;
 		small = false;
+		segundos =0;
 		
 		MENU = loadImage ("images/MENU.png");
 		STORY = loadImage ("images/STORY.png");
@@ -78,9 +79,7 @@ public class MainMenu extends PApplet {
 		DEER   = loadImage ("images/DEER.png");
 		
 		EMPTYSOUP  = loadImage ("images/EMPTYSOUP.png");
-		GL1  = loadImage ("images/GL1.png");
-		GL2  = loadImage ("images/GL2.png");
-		GL3  = loadImage ("images/GL3.png");
+		
 		PARALLAX1  = loadImage ("images/PARALLAX1.png");
 		WINDMILL  = loadImage ("images/WINDMILL.png");
 		
@@ -88,10 +87,11 @@ public class MainMenu extends PApplet {
 		S_SOUP1  = loadImage ("images/S-SOUP1.png");
 		S_SOUP2  = loadImage ("images/S-SOUP2.png");
 		S_SOUP3  = loadImage ("images/S-SOUP2.png");
-		S_SOUPS  = loadImage ("images/S-SOUPS.png");
+		
 		
 		WINDOW = loadImage ("images/WINDOW.png");
 		GOLDILOCKS =loadImage ("images/GOLDILOCKS.png");
+		SOUP1CHAT = loadImage ("images/SOUP1CHAT.png");
 		
 	}
 
@@ -121,22 +121,23 @@ public class MainMenu extends PApplet {
 			break;
 		
 		case 6:
+				 
 			
-			 
-			//  float fgX=map(mouseX,0,width,0,-100);
-			 // image(PARALLAX1,fgX+300,0,2304/2,1440/2);
+			 //PARALLAX EFECT
+			 float fgX=map(mouseX,0,width,0,-100);
+			  image(PARALLAX1,fgX+300,0,2304/2,1440/2);
 			  
-			 // float bgX=map(mouseX,0,width,0,-50);
-			 // image(DEER,bgX+250,0,2304/2,1440/2);
-			
-			
-			
-			
-			 image (WINDOW,0,0);
-			 image (GAME,0,0);
+			  float bgX=map(mouseX,0,width,0,-50);
+			  image(DEER,bgX+250,0,2304/2,1440/2);
+			  
 			 image (BASE,0,0);
+			 image (GAME,0,0);
 			 image (WINDOW,0,0);
 			 image (GOLDILOCKS, 0,0);
+			 image (WINDMILL,0,0);
+			
+			 
+			 
 			 
 			  hover(); //MÉTODO PARA MOSTRAR SELECCIONES
 			  
@@ -197,25 +198,48 @@ public class MainMenu extends PApplet {
 			break;
 			
 		case 6:
-			if (mouseX > 47 && mouseX < 47 + 97
-					&& mouseY > 47 && mouseY < 47 + 60)
+			
+			if (mouseX > 47 && mouseX < 47 + 97    			//SALIR DEL JUEGO
+					&& mouseY > 47 && mouseY < 47 + 60) {
 				exit ();
-			
-			if (mouseX < 388 && mouseX < 388 + 256
-			&& mouseY < 611 && mouseY < 611 + 105)
+			} 
+			if (mouseX < 388 && mouseX < 388 + 123    //SOPA 1 
+			&& mouseY < 511 && mouseY < 511 + 98) {
+				
+				if  ((frameCount&60)==0){
+					segundos ++;
+					if (segundos >=2){
+						image (SOUP1CHAT,0,0); //SOPA1 CHAT
+						segundos =0;
+					}
+					
+					
+				}
 				big = true;
+				
+			}
 			
-			if 	(mouseX < 569 && mouseX < 569 + 118
+			/*if 	(mouseX < 569 && mouseX < 569 + 118
 			&& mouseY < 534 && mouseY < 534 + 81)
 				medium = true;
 			
 			if (mouseX < 717 && mouseX < 717 + 78
 				&& mouseY < 552 && mouseY < 552 + 51)
 				small = true;
-		}
+			
+			*/
+			
+			if (mouseX > 496 && mouseX < 496 + 39
+				&& mouseY > 331 && mouseY < 331 + 9	)
+				
+				
+			
+			break;
+		} //SWITCH
 		
 		
-	}
+		
+	} //MOUSEPRESSED
 	
 	public void hover () {
 		
