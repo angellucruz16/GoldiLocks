@@ -135,12 +135,13 @@ public class MainMenu extends PApplet {
 			image (GAME,0,0);
 			image (WINDOW,0,0);
 			image (GOLDILOCKS, 0,0);
-			image (WINDMILL,0,0);
+			
 
 			hover(); //MÉTODO PARA MOSTRAR SELECCIONES
 			//image (SOUP1CHAT,0,0);
 			renderChats();
-
+			image (WINDMILL,0,0, width / 2, height /2);
+			
 			break;
 		}
 
@@ -222,8 +223,8 @@ public class MainMenu extends PApplet {
 				small = true;
 			}	
 
-			//if (mouseX > 496 && mouseX < 496 + 39  //CLICL EN MOLINO
-			//	&& mouseY > 331 && mouseY < 331 + 9	)
+			if (mouseX > 496 && mouseX < 496 + 39  //CLICK EN MOLINO
+				&& mouseY > 331 && mouseY < 331 + 9	)
 
 
 
@@ -259,19 +260,30 @@ public class MainMenu extends PApplet {
 	public void renderChats () {
 
 		PImage currentChat= null ;
-		println(big);
-		if (big == true && medium == false && small == false) {
+
+		if (soupchat1 == false && big == true && medium == false && small == false) {
 			currentChat = SOUP1CHAT;
 
-
+			//	soupchat1 = true;
 		}
-		if (currentChat != null) {
 
+		if (soupchat1 == false && big == true && medium == true && small == false) {
+//			currentChat = SOUP2CHAT; 
+		}
+
+		if (soupchat1 == false && big == true && medium == true && small == true) {
+//			currentChat = SOUP3CHAT; 
+		}
+		if (currentChat != null) {		
+
+			//	segundos ++;
+			//	long init = frameCount;
+
+
+			//	while ((frameCount - init)%60 <=5) {
 			image (currentChat,0,0); //SOPA1 CHAT
-			noLoop ();
-			delay(3000);
-			loop ();
-
+			//	println ((frameCount - init)%60);
+			//	}
 		}
 	} //RENDERCHATS
 
