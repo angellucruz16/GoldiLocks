@@ -44,6 +44,7 @@ public class MainMenu extends PApplet {
 	PImage SOUP1CHAT2;
 	PImage SOUP2CHAT;
 	PImage SOUP3CHAT;
+	PImage SOUP3CHAT2;
 
 	// GOLDILOCKS
 	PImage GOLDILOCKS;
@@ -63,6 +64,7 @@ public class MainMenu extends PApplet {
 	boolean soupchat3;
 	boolean soupchat4;
 	int clickcounter;
+	int clickcounter2;
 
 
 	public static void main(String[] args) {
@@ -118,6 +120,7 @@ public class MainMenu extends PApplet {
 		SOUP1CHAT2 = loadImage ("images/SOUP1CHAT2.png");
 		SOUP2CHAT = loadImage ("images/SOUP2CHAT.png");
 		SOUP3CHAT = loadImage ("images/SOUP3CHAT.png");
+		SOUP3CHAT2 = loadImage ("images/SOUP3CHAT2.png");
 
 		//GOLDILOCKS
 		WINDMILL  = loadImage ("images/WINDMILL.png");	
@@ -131,6 +134,8 @@ public class MainMenu extends PApplet {
 		small = false;
 		segundos =0;
 		clickcounter= 0;
+		clickcounter2 = 0;
+		
 	} //SETUP
 
 	public void draw () {
@@ -182,7 +187,7 @@ public class MainMenu extends PApplet {
 			renderChats(); //MOSTRAR DIALOGOS
 			image (WINDMILL,0,0, width / 2, height /2);
 			renderGoldilocks ();
-
+			renderEmptySoup ();
 			break;
 		} // SWITCH
 
@@ -255,10 +260,14 @@ public class MainMenu extends PApplet {
 			//MOUSECLICK EN SOPAS
 									
 				if ( mouseX > 388 && mouseX < 388 + 123 
-						&& mouseY > 506 && mouseY < 506 + 98) {
+						&& mouseY > 506 && mouseY < 506 + 98) { //CLICK COUNTER SOPA 1
 							clickcounter ++;
+					} //counter 1
 				
-			}
+				if ( mouseX > 717 && mouseX < 717 + 78		
+						&& mouseY > 552 && mouseY < 552 + 51) { //CLICK COUNTER SOPA 2
+							clickcounter2 ++;
+				}
 				
 				if (big == false && clickcounter == 1 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
 						&& mouseY > 506 && mouseY < 506 + 98) {
@@ -280,20 +289,24 @@ public class MainMenu extends PApplet {
 
 			
 			if (mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
-					&& mouseY > 552 && mouseY < 552 + 51) {
+					&& mouseY > 552 && mouseY < 552 + 51 && clickcounter2 ==1) {
 				small = true;
 			}	
 
+			if (mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
+					&& mouseY > 552 && mouseY < 552 + 51 && clickcounter2 ==2) {
+				small = true;
+			}	
 			
 			if (mouseX > 496 && mouseX < 496 + 39  	//CLICK EN MOLINO
 					&& mouseY > 331 && mouseY < 331 + 9	) {
 				
 			
-
+			}
 	
 
 				break;
-}
+
 		} //SWITCH
 
 
@@ -321,8 +334,14 @@ public class MainMenu extends PApplet {
 			image (S_SOUP2,0,0);
 		}	
 		
-		if (big==true && medium == true && small == false  //SEGUNDA SOPA SELECTION
-				 && mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
+		if (big==true && medium == true && small == false 
+				 && mouseX > 717 && mouseX < 717 + 78		//TERCERA SOPA SELECTION
+				&& mouseY > 552 && mouseY < 552 + 51)  {
+			image (S_SOUP3,0,0);
+		} 
+		
+		if (big==true && medium == true && small == true && clickcounter2 == 1
+				 && mouseX > 717 && mouseX < 717 + 78		//TERCERA SOPA SELECTION
 				&& mouseY > 552 && mouseY < 552 + 51)  {
 			image (S_SOUP3,0,0);
 		} 
@@ -349,8 +368,12 @@ public class MainMenu extends PApplet {
 			currentChat = SOUP2CHAT; 
 		}
 
-		if (soupchat4 == false && big == true && medium == true && small == true) { //CHAT SOPA 3
+		if (soupchat4 == false && big == true && medium == true && small == true && clickcounter2 ==1) { //CHAT SOPA 3
 			currentChat = SOUP3CHAT; 
+		}
+		
+		if (soupchat4 == false && big == true && medium == true && small == false && clickcounter2 ==2) { //CHAT SOPA 3
+			currentChat = SOUP3CHAT2; 
 		}
 		if (currentChat != null) {		
 
@@ -371,10 +394,20 @@ public class MainMenu extends PApplet {
 			currentGoldilocks = GOLDILOCKS2; 
 		}
 		
+		if (soupchat4 == false && big == true && medium == true && small == true && clickcounter2 ==2) { //CHAT SOPA 3
+			currentGoldilocks = GOLDILOCKS3; 
+		}
+		
 		if (currentGoldilocks != null) {		
 			image (currentGoldilocks,0,0); //GOLDILOCK
 		}
 		
 	}//RENDERGOLDILOCK
 	
+	public void renderEmptySoup () {
+		
+		if (soupchat4 == false && big == true && medium == true && small == true && clickcounter2 ==2) { //CHAT SOPA 3
+			image (EMPTYSOUP,0,0); 
+		}
+	}//RENDER EMPTY SOUP
 } //MAINMENU
