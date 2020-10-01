@@ -65,8 +65,8 @@ public class MainMenu extends PApplet {
 	boolean soupchat4;
 	int clickcounter;
 	int clickcounter2;
-
-
+	float x=0;
+	
 	public static void main(String[] args) {
 
 		String[] processingArgs = {"MainMenu"};
@@ -180,14 +180,17 @@ public class MainMenu extends PApplet {
 			//
 
 			image (GOLDILOCKS, 0,0);
-
-
+			
+			image (WINDMILL, 483,322);
+			
 			hover(); // MOSTRAR SELECCIONES
 
 			renderChats(); //MOSTRAR DIALOGOS
-			image (WINDMILL,0,0, width / 2, height /2);
+			
 			renderGoldilocks ();
 			renderEmptySoup ();
+			pushMatrix();
+			popMatrix();
 			break;
 		} // SWITCH
 
@@ -298,10 +301,16 @@ public class MainMenu extends PApplet {
 				small = true;
 			}	
 			
-			if (mouseX > 496 && mouseX < 496 + 39  	//CLICK EN MOLINO
-					&& mouseY > 331 && mouseY < 331 + 9	) {
+			if (mouseX > 487 && mouseX < 487 + 56  	//CLICK EN MOLINO
+					&& mouseY > 340 && mouseY < 340 + 46) {
+				println ("entro");
+				pushMatrix();
 				
-			
+				translate(600,825);
+				rotate(x+=0.4);
+				image (WINDMILL, 483,322);
+				
+				popMatrix();
 			}
 	
 
