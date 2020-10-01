@@ -37,13 +37,18 @@ public class MainMenu extends PApplet {
 	PImage S_SOUP1;
 	PImage S_SOUP2;
 	PImage S_SOUP3;
+	
 
 	// SOUP CHATS
 	PImage SOUP1CHAT;
 	PImage SOUP1CHAT2;
+	PImage SOUP2CHAT;
+	PImage SOUP3CHAT;
 
-	// OTHERS
+	// GOLDILOCKS
 	PImage GOLDILOCKS;
+	PImage GOLDILOCKS2;
+	PImage GOLDILOCKS3;
 	PImage WINDMILL;
 
 
@@ -55,6 +60,8 @@ public class MainMenu extends PApplet {
 	int segundos;
 	boolean soupchat1;
 	boolean soupchat2;
+	boolean soupchat3;
+	boolean soupchat4;
 	int clickcounter;
 
 
@@ -69,7 +76,7 @@ public class MainMenu extends PApplet {
 
 	public void settings () {
 		size (1328,830);
-		state = 1 ;
+		state = 6 ;                                   //NO OLVIDAR CAMBIAR EL STATE 
 
 	} // SETTINGS
 
@@ -104,16 +111,19 @@ public class MainMenu extends PApplet {
 		S_PHOTOS  = loadImage ("images/S-PHOTOS.png");
 		S_SOUP1  = loadImage ("images/S-SOUP1.png");
 		S_SOUP2  = loadImage ("images/S-SOUP2.png");
-		S_SOUP3  = loadImage ("images/S-SOUP2.png");
+		S_SOUP3  = loadImage ("images/S-SOUP3.png");
 
 		// SOUP CHATS
 		SOUP1CHAT = loadImage ("images/SOUP1CHAT.png");
-		SOUP1CHAT2 =loadImage ("images/SOUP1CHAT2.png");
+		SOUP1CHAT2 = loadImage ("images/SOUP1CHAT2.png");
+		SOUP2CHAT = loadImage ("images/SOUP2CHAT.png");
+		SOUP3CHAT = loadImage ("images/SOUP3CHAT.png");
 
-		//OTHERS
+		//GOLDILOCKS
 		WINDMILL  = loadImage ("images/WINDMILL.png");	
-		GOLDILOCKS =loadImage ("images/GOLDILOCKS.png");
-
+		GOLDILOCKS = loadImage ("images/GOLDILOCKS.png");
+		GOLDILOCKS2 = loadImage ("images/GOLDILOCKS2.png");
+		GOLDILOCKS3 = loadImage ("images/GOLDILOCKS3.png");
 
 		// INITIALIZE
 		big = false;
@@ -171,6 +181,7 @@ public class MainMenu extends PApplet {
 
 			renderChats(); //MOSTRAR DIALOGOS
 			image (WINDMILL,0,0, width / 2, height /2);
+			renderGoldilocks ();
 
 			break;
 		} // SWITCH
@@ -263,7 +274,7 @@ public class MainMenu extends PApplet {
 			
 			
 			if 	(mouseX > 569 && mouseX < 569 + 118 	//CLICK EN SOPA 2
-					&& mouseY > 534 && mouseY < 534 + 81) {
+					&& mouseY > 534 && mouseY < 534 + 81 && clickcounter ==2) {
 				medium = true;
 			}
 
@@ -295,26 +306,24 @@ public class MainMenu extends PApplet {
 				&& mouseX > 388 && mouseX < 388 + 123
 				&& mouseY > 506 && mouseY < 506 + 98) {
 			image (S_SOUP1, 0,0);
-
-
 		}	
 
-		if (big==true && medium == false && small == false && soupchat2 == true //CHAT 2 SOPA 1
+		if (big==true && medium == false && small == false && clickcounter ==  1 //PRIMERA SOPA SELECTION
 				&& mouseX > 388 && mouseX < 388 + 123
 				&& mouseY > 506 && mouseY < 506 + 98) {
-			image (SOUP1CHAT2, 0,0);
-
-
+			image (S_SOUP1, 0,0);
 		}	
-
-		if (big==false && medium == false && small == false  //SEGUNDA SOPA SELECTION
-				&& mouseX > 569 && mouseX < 569 + 118
-				&& mouseY > 534 && mouseY < 534 + 81) {
+		
+		
+		if (big==true && medium == false && small == false && clickcounter ==2  //SEGUNDA SOPA SELECTION
+				&& mouseX > 567 && mouseX < 569 + 118
+				&& mouseY > 527 && mouseY < 534 + 82 ) {
 			image (S_SOUP2,0,0);
 		}	
+		
 		if (big==true && medium == true && small == false  //SEGUNDA SOPA SELECTION
-				&& mouseX > 717 && mouseX < 717 + 78
-				&& mouseY > 552 && mouseY < 552 + 51) {
+				 && mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
+				&& mouseY > 552 && mouseY < 552 + 51)  {
 			image (S_SOUP3,0,0);
 		} 
 	} //HOVER
@@ -325,30 +334,47 @@ public class MainMenu extends PApplet {
 
 		PImage currentChat= null ;
 
-		if (soupchat1 == true && big == true && medium == false && small == false) {
+		if (soupchat1 == true && big == true && medium == false && small == false) { //CHAT1 SOPA 1
 			currentChat = SOUP1CHAT;
 
 		}
 
-
-		if (soupchat2 == true && big == true && medium == false && small == false) {
+		if (soupchat2 == true && big == true && medium == false && small == false) { //CHAT2 SOPA 1
 			currentChat = SOUP1CHAT2;
 
 			//	soupchat2 = true;
 		}
 
-		if (soupchat1 == false && big == true && medium == true && small == false) {
-			//			currentChat = SOUP2CHAT; 
+		if (soupchat3 == false && big == true && medium == true && small == false) { //CHAT SOPA 2
+			currentChat = SOUP2CHAT; 
 		}
 
-		if (soupchat1 == false && big == true && medium == true && small == true) {
-			//			currentChat = SOUP3CHAT; 
+		if (soupchat4 == false && big == true && medium == true && small == true) { //CHAT SOPA 3
+			currentChat = SOUP3CHAT; 
 		}
 		if (currentChat != null) {		
 
 			image (currentChat,0,0); //SOPA1 CHAT
-
 		}
+		
 	} //RENDERCHATS
 
+	public void renderGoldilocks () {
+		
+		PImage currentGoldilocks= null ;
+		
+		if (big == true && medium == false && small == false && clickcounter ==2) { //GOLDILOCK SOPA 1
+			currentGoldilocks = GOLDILOCKS2;
+		}
+		
+		if (soupchat3 == false && big == true && medium == true && small == false) { //CHAT SOPA 2
+			currentGoldilocks = GOLDILOCKS2; 
+		}
+		
+		if (currentGoldilocks != null) {		
+			image (currentGoldilocks,0,0); //GOLDILOCK
+		}
+		
+	}//RENDERGOLDILOCK
+	
 } //MAINMENU
