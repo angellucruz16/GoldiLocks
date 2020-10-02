@@ -66,6 +66,7 @@ public class MainMenu extends PApplet {
 	int clickcounter;
 	int clickcounter2;
 	int clickcounter3;
+	int clickcounter4;
 
 	boolean spinwindmill;
 	float angle = 0;
@@ -149,6 +150,7 @@ public class MainMenu extends PApplet {
 		clickcounter= 0; //BIG SOUP
 		clickcounter2 = 0; //SMALL SOUP
 		clickcounter3 = 0; //WINDMILL 
+		clickcounter4 = 0; //FAMILY
 
 		spinwindmill = false;
 		
@@ -269,6 +271,7 @@ public class MainMenu extends PApplet {
 			break;
 
 		case 5:
+			
 			if (mouseX > 777 && mouseX < 777 + 322
 					&& mouseY > 692 && mouseY < 692 + 60) //CONTINUE
 				state = 6;
@@ -304,6 +307,11 @@ public class MainMenu extends PApplet {
 					&& mouseY > 340 && mouseY < 340 + 46) {
 				clickcounter3 ++;
 			} //counter 3
+			
+			if (mouseX > 321 && mouseX < 321 + 296
+					&& mouseY > 245 && mouseY < 245 + 83 ) { //CLICK EN FAMILIA
+				clickcounter4 ++ ;
+			} //counter 4
 
 			// CLICKSOUPS
 			if (big == false && clickcounter == 1 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
@@ -358,6 +366,8 @@ public class MainMenu extends PApplet {
 			}
 			
 			
+			
+			
 			break;
 			
 		} //SWITCH
@@ -368,7 +378,7 @@ public class MainMenu extends PApplet {
 
 	public void hover () {
 
-		if (big==false && medium == false && small == false //PRIMERA SOPA SELECTION
+		if (big==false && medium == false && small == false  //PRIMERA SOPA SELECTION
 				&& mouseX > 388 && mouseX < 388 + 123
 				&& mouseY > 506 && mouseY < 506 + 98) {
 			image (S_SOUP1, 0,0);
@@ -398,6 +408,14 @@ public class MainMenu extends PApplet {
 				&& mouseY > 552 && mouseY < 552 + 51)  {
 			image (S_SOUP3,0,0);
 		} 
+		
+		if ( big == true && medium == true && small == true
+				&& mouseX > 321 && mouseX < 321 + 296
+				&& mouseY > 245 && mouseY < 245 + 83 && clickcounter4 == 0) { //SELECTED FAMILY
+			
+			image (SELECTEDFAMILY,0,0);
+			
+		}
 	} //HOVER
 
 
@@ -406,7 +424,7 @@ public class MainMenu extends PApplet {
 
 		PImage currentChat= null ;
 
-		if (soupchat1 == true && big == true && medium == false && small == false) { //CHAT1 SOPA 1
+		if (soupchat1 == true && big == true && medium == false && small == false ) { //CHAT1 SOPA 1
 			currentChat = SOUP1CHAT;
 
 		}
@@ -428,9 +446,15 @@ public class MainMenu extends PApplet {
 		if (soupchat4 == false && big == true && medium == true && small == false && clickcounter2 ==2) { //CHAT SOPA 3
 			currentChat = SOUP3CHAT2; 
 		}
+		
+		if (clickcounter4 == 1 && big == true && medium == true && small == true ) { //CHAT SOPA 3
+			currentChat = FAMILYCHAT; 
+		}
+		
 		if (currentChat != null) {		
 
 			image (currentChat,0,0); //SOPA1 CHAT
+			
 		}
 
 	} //RENDERCHATS
