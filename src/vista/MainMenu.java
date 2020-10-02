@@ -20,10 +20,6 @@ public class MainMenu extends PApplet {
 
 	//WINDOW
 	PImage BASE;
-	PImage D_CLOSEDWINDOW;
-	PImage D_OPENWINDOW;
-	PImage S_CLOSEDWINDOW;
-	PImage S_OPENWINDOW;
 	PImage WINDOW;
 
 	//BACKGROUND PARALLAX	
@@ -37,7 +33,7 @@ public class MainMenu extends PApplet {
 	PImage S_SOUP1;
 	PImage S_SOUP2;
 	PImage S_SOUP3;
-	
+
 
 	// SOUP CHATS
 	PImage SOUP1CHAT;
@@ -51,8 +47,12 @@ public class MainMenu extends PApplet {
 	PImage GOLDILOCKS2;
 	PImage GOLDILOCKS3;
 	PImage WINDMILL;
-
-
+	
+	//FAMILY BEAR
+	PImage SELECTEDFAMILY;
+	PImage FAMILYCHAT;
+	
+	
 	//VARIABLES
 	int state;
 	boolean big;
@@ -65,8 +65,19 @@ public class MainMenu extends PApplet {
 	boolean soupchat4;
 	int clickcounter;
 	int clickcounter2;
-	float x=0;
+	int clickcounter3;
+
+	boolean spinwindmill;
+	float angle = 0;
 	
+	//WINDOW
+	
+	boolean stillwindow;
+	boolean overboard;
+	int newX;
+	int newY;
+	
+
 	public static void main(String[] args) {
 
 		String[] processingArgs = {"MainMenu"};
@@ -84,6 +95,7 @@ public class MainMenu extends PApplet {
 
 	public void setup () {
 
+
 		//LOAD IMAGES 
 
 		//MENU
@@ -98,10 +110,7 @@ public class MainMenu extends PApplet {
 		GAME = loadImage ("images/GAME.png");
 
 		//WINDOW
-		D_CLOSEDWINDOW  = loadImage ("images/D-CLOSEDWINDOW.png");
-		D_OPENWINDOW  = loadImage ("images/D-OPENWINDOW.png");
-		S_CLOSEDWINDOW  = loadImage ("images/S-CLOSEDWINDOW.png");
-		S_OPENWINDOW  = loadImage ("images/S-OPENWINDOW.png");
+		
 		WINDOW = loadImage ("images/WINDOW.png");
 
 		//BACKGROUND
@@ -127,15 +136,26 @@ public class MainMenu extends PApplet {
 		GOLDILOCKS = loadImage ("images/GOLDILOCKS.png");
 		GOLDILOCKS2 = loadImage ("images/GOLDILOCKS2.png");
 		GOLDILOCKS3 = loadImage ("images/GOLDILOCKS3.png");
-
+		
+		//BEAR FAMILY
+		FAMILYCHAT = loadImage ("images/FAMILYCHAT.png");
+		SELECTEDFAMILY = loadImage ("images/SELECTEDFAMILY.png");
+		
 		// INITIALIZE
 		big = false;
 		medium = false;
 		small = false;
 		segundos =0;
-		clickcounter= 0;
-		clickcounter2 = 0;
+		clickcounter= 0; //BIG SOUP
+		clickcounter2 = 0; //SMALL SOUP
+		clickcounter3 = 0; //WINDMILL 
+
+		spinwindmill = false;
 		
+		//WINDOW
+		overboard = false;
+		stillwindow = true;
+				
 	} //SETUP
 
 	public void draw () {
@@ -180,17 +200,25 @@ public class MainMenu extends PApplet {
 			//
 
 			image (GOLDILOCKS, 0,0);
+
 			
-			image (WINDMILL, 483,322);
-			
+
 			hover(); // MOSTRAR SELECCIONES
 
 			renderChats(); //MOSTRAR DIALOGOS
-			
+
 			renderGoldilocks ();
 			renderEmptySoup ();
+			spinWindmill();
+
 			pushMatrix();
 			popMatrix();
+			
+			//WINDOW
+			
+			mouseMoved ();
+			mouseReleased ();
+			
 			break;
 		} // SWITCH
 
@@ -251,46 +279,52 @@ public class MainMenu extends PApplet {
 
 		case 6:
 
-			
+
 			if (mouseX > 47 && mouseX < 47 + 97    			//EXIT
 					&& mouseY > 47 && mouseY < 47 + 60) {
 				exit ();
 			} 
-			
-			
-			
-			
-			//MOUSECLICK EN SOPAS
-									
-				if ( mouseX > 388 && mouseX < 388 + 123 
-						&& mouseY > 506 && mouseY < 506 + 98) { //CLICK COUNTER SOPA 1
-							clickcounter ++;
-					} //counter 1
-				
-				if ( mouseX > 717 && mouseX < 717 + 78		
-						&& mouseY > 552 && mouseY < 552 + 51) { //CLICK COUNTER SOPA 2
-							clickcounter2 ++;
-				}
-				
-				if (big == false && clickcounter == 1 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
-						&& mouseY > 506 && mouseY < 506 + 98) {
-					big = true;
-					soupchat1 =true;
-				}
-			
-				if (big == true && clickcounter == 2 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
-						&& mouseY > 506 && mouseY < 506 + 98) {
-					big = true;
-					soupchat2 =true;
-				}
-			
-			
+
+
+
+
+			//CLICKCOUNTERS
+
+			if ( mouseX > 388 && mouseX < 388 + 123 
+					&& mouseY > 506 && mouseY < 506 + 98) { //CLICK COUNTER SOPA 1
+				clickcounter ++;
+			} //counter 1 
+
+			if ( mouseX > 717 && mouseX < 717 + 78		
+					&& mouseY > 552 && mouseY < 552 + 51) { //CLICK COUNTER SOPA 2
+				clickcounter2 ++;
+			} //counter 2
+
+			if (mouseX > 487 && mouseX < 487 + 56  	//CLICK EN MOLINO COUNTER
+					&& mouseY > 340 && mouseY < 340 + 46) {
+				clickcounter3 ++;
+			} //counter 3
+
+			// CLICKSOUPS
+			if (big == false && clickcounter == 1 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
+					&& mouseY > 506 && mouseY < 506 + 98) {
+				big = true;
+				soupchat1 =true;
+			}
+
+			if (big == true && clickcounter == 2 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
+					&& mouseY > 506 && mouseY < 506 + 98) {
+				big = true;
+				soupchat2 =true;
+			}
+
+
 			if 	(mouseX > 569 && mouseX < 569 + 118 	//CLICK EN SOPA 2
 					&& mouseY > 534 && mouseY < 534 + 81 && clickcounter ==2) {
 				medium = true;
 			}
 
-			
+
 			if (mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
 					&& mouseY > 552 && mouseY < 552 + 51 && clickcounter2 ==1) {
 				small = true;
@@ -300,22 +334,32 @@ public class MainMenu extends PApplet {
 					&& mouseY > 552 && mouseY < 552 + 51 && clickcounter2 ==2) {
 				small = true;
 			}	
+
+			//CLICK EN MOLINO
 			
 			if (mouseX > 487 && mouseX < 487 + 56  	//CLICK EN MOLINO
-					&& mouseY > 340 && mouseY < 340 + 46) {
-				println ("entro");
-				pushMatrix();
-				
-				translate(600,825);
-				rotate(x+=0.4);
-				image (WINDMILL, 483,322);
-				
-				popMatrix();
+					&& mouseY > 340 && mouseY < 340 + 46 && clickcounter3 %2 == 1 ) {
+
+				spinwindmill = true;
+				println ("true");
+
 			}
-	
-
-				break;
-
+			if (mouseX > 487 && mouseX < 487 + 56  	//CLICK EN MOLINO
+					&& mouseY > 340 && mouseY < 340 + 46 && clickcounter3 %2 == 0) {
+				spinwindmill = false;
+				println ("false");			
+			}
+			
+			if (mouseX > 730 && mouseX < 730 + 131  	//CLICK WINDOW
+					&& mouseY > 306 && mouseY < 306 + 111) {
+				
+				stillwindow = false;
+				mouseMoved ();
+			}
+			
+			
+			break;
+			
 		} //SWITCH
 
 
@@ -335,22 +379,22 @@ public class MainMenu extends PApplet {
 				&& mouseY > 506 && mouseY < 506 + 98) {
 			image (S_SOUP1, 0,0);
 		}	
-		
-		
+
+
 		if (big==true && medium == false && small == false && clickcounter ==2  //SEGUNDA SOPA SELECTION
 				&& mouseX > 567 && mouseX < 569 + 118
 				&& mouseY > 527 && mouseY < 534 + 82 ) {
 			image (S_SOUP2,0,0);
 		}	
-		
+
 		if (big==true && medium == true && small == false 
-				 && mouseX > 717 && mouseX < 717 + 78		//TERCERA SOPA SELECTION
+				&& mouseX > 717 && mouseX < 717 + 78		//TERCERA SOPA SELECTION
 				&& mouseY > 552 && mouseY < 552 + 51)  {
 			image (S_SOUP3,0,0);
 		} 
-		
+
 		if (big==true && medium == true && small == true && clickcounter2 == 1
-				 && mouseX > 717 && mouseX < 717 + 78		//TERCERA SOPA SELECTION
+				&& mouseX > 717 && mouseX < 717 + 78		//TERCERA SOPA SELECTION
 				&& mouseY > 552 && mouseY < 552 + 51)  {
 			image (S_SOUP3,0,0);
 		} 
@@ -380,7 +424,7 @@ public class MainMenu extends PApplet {
 		if (soupchat4 == false && big == true && medium == true && small == true && clickcounter2 ==1) { //CHAT SOPA 3
 			currentChat = SOUP3CHAT; 
 		}
-		
+
 		if (soupchat4 == false && big == true && medium == true && small == false && clickcounter2 ==2) { //CHAT SOPA 3
 			currentChat = SOUP3CHAT2; 
 		}
@@ -388,35 +432,92 @@ public class MainMenu extends PApplet {
 
 			image (currentChat,0,0); //SOPA1 CHAT
 		}
-		
+
 	} //RENDERCHATS
 
 	public void renderGoldilocks () {
-		
+
 		PImage currentGoldilocks= null ;
-		
+
 		if (big == true && medium == false && small == false && clickcounter ==2) { //GOLDILOCK SOPA 1
 			currentGoldilocks = GOLDILOCKS2;
 		}
-		
+
 		if (soupchat3 == false && big == true && medium == true && small == false) { //CHAT SOPA 2
 			currentGoldilocks = GOLDILOCKS2; 
 		}
-		
+
 		if (soupchat4 == false && big == true && medium == true && small == true && clickcounter2 ==2) { //CHAT SOPA 3
 			currentGoldilocks = GOLDILOCKS3; 
 		}
-		
+
 		if (currentGoldilocks != null) {		
 			image (currentGoldilocks,0,0); //GOLDILOCK
 		}
-		
+
 	}//RENDERGOLDILOCK
-	
+
 	public void renderEmptySoup () {
-		
+
 		if (soupchat4 == false && big == true && medium == true && small == true && clickcounter2 ==2) { //CHAT SOPA 3
 			image (EMPTYSOUP,0,0); 
 		}
 	}//RENDER EMPTY SOUP
+
+	public void spinWindmill () {
+
+
+		if (spinwindmill == true) {
+
+			pushMatrix();
+
+			translate(516,356);
+			rotate(angle += (PI/180)*10);
+			rotate(radians(300));
+			imageMode (CENTER);
+			image (WINDMILL, 0,0);
+
+			popMatrix();
+
+			imageMode (CORNER);
+		}
+		
+		if (spinwindmill == false) {
+
+			pushMatrix();
+			
+			
+			translate(516,356);
+			imageMode (CENTER);
+			image (WINDMILL, 0,0);
+
+			popMatrix();
+
+			imageMode (CORNER);
+
+
+		}
+	} //SPIN WINDMILL
+
+//WINDOW
+ 
+ public void mouseMoved () {
+	 
+	 if (stillwindow == false) {
+		 
+		 newX = mouseX ;
+		 
+		 image (WINDOW, newX,newY);
+		 
+	 }
+		 
+		 
+ }// MOUSEMOVED WINDOW
+	
+	public void mouseReleased () {
+		
+		stillwindow = true;
+		
+		
+	} //MOUSE RELEASED WINDOW
 } //MAINMENU
