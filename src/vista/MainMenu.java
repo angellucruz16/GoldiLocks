@@ -5,6 +5,7 @@ package vista;
 //import java.util.ArrayList;
 
 import processing.core.PApplet;
+import modelo.Escena;
 import processing.core.PImage;
 public class MainMenu extends PApplet {	
 
@@ -70,6 +71,8 @@ public class MainMenu extends PApplet {
 
 	boolean spinwindmill;
 	float angle = 0;
+	
+	Escena palabra;
 	
 	//WINDOW
 	
@@ -153,6 +156,8 @@ public class MainMenu extends PApplet {
 		clickcounter4 = 0; //FAMILY
 
 		spinwindmill = false;
+		
+		
 		
 		//WINDOW
 		overboard = false;
@@ -324,6 +329,7 @@ public class MainMenu extends PApplet {
 					&& mouseY > 506 && mouseY < 506 + 98) {
 				big = true;
 				soupchat2 =true;
+				palabra.setup("big");
 			}
 
 
