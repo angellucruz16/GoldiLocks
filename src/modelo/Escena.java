@@ -1,8 +1,6 @@
 package modelo;
-import java.util.ArrayList;
 
 import processing.core.PApplet;
-import vista.MainMenu;
 
 public class Escena extends PApplet {
 
@@ -11,10 +9,6 @@ public class Escena extends PApplet {
 
 	} // MAIN
 
-
-	String [] arrayWords;
-	ArrayList <String>  listWords;
-
 	public void settings () {
 
 
@@ -22,29 +16,27 @@ public class Escena extends PApplet {
 
 	public void setup (String palabra) {
 
-		arrayWords = loadStrings ("../resources/Texto.txt");
-		listWords = new ArrayList <String> ();
+		if (palabra!=null) {
 
-		String[] lines = loadStrings ("Texto.txt");
-		String [] newLines = new String [lines.length];
-		for (int i = 0; i < lines.length; i++) {
+			String[] lines = loadStrings ("../resources/Texto.txt");
 
-			String currentWord = lines [i];
-			if (currentWord == palabra)
-			{
-				currentWord = lines [i].toUpperCase();
+			if (lines!=null) {
+
+				String [] newLines = new String [lines.length];
+				for (int i = 0; i < lines.length; i++) {
+
+					String currentWord = lines [i];
+					if (currentWord == palabra)
+					{
+						currentWord = lines [i].toUpperCase();
+					}
+					newLines [i] = currentWord;
+				}
+				saveStrings ("../resources/Texto.txt", newLines);
 			}
-			newLines [i] = currentWord;
 		}
 	}
-
-	saveStrings ("../resources/Texto2.txt", newLines);
-
 }//SETUP
 
 
-}//draw
-
-} //ESCENA
-}
 

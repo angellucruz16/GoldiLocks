@@ -316,6 +316,7 @@ public class MainMenu extends PApplet {
 			if (mouseX > 321 && mouseX < 321 + 296
 					&& mouseY > 245 && mouseY < 245 + 83 ) { //CLICK EN FAMILIA
 				clickcounter4 ++ ;
+				//palabra.setup("family"); 
 			} //counter 4
 
 			// CLICKSOUPS
@@ -323,25 +324,29 @@ public class MainMenu extends PApplet {
 					&& mouseY > 506 && mouseY < 506 + 98) {
 				big = true;
 				soupchat1 =true;
+			
 			}
 
 			if (big == true && clickcounter == 2 && mouseX > 388 && mouseX < 388 + 123 //CLICK EN SOPA 1
 					&& mouseY > 506 && mouseY < 506 + 98) {
 				big = true;
 				soupchat2 =true;
-				palabra.setup("big");
+				
+				//palabra.setup("big"); 
 			}
 
 
 			if 	(mouseX > 569 && mouseX < 569 + 118 	//CLICK EN SOPA 2
 					&& mouseY > 534 && mouseY < 534 + 81 && clickcounter ==2) {
 				medium = true;
+				//palabra.setup("medium"); 
 			}
 
 
 			if (mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
 					&& mouseY > 552 && mouseY < 552 + 51 && clickcounter2 ==1) {
 				small = true;
+				//palabra.setup("small"); 
 			}	
 
 			if (mouseX > 717 && mouseX < 717 + 78		//CLICK EN SOPA 3
@@ -356,6 +361,7 @@ public class MainMenu extends PApplet {
 
 				spinwindmill = true;
 				println ("true");
+				//palabra.setup("windmill");
 
 			}
 			if (mouseX > 487 && mouseX < 487 + 56  	//CLICK EN MOLINO
@@ -369,6 +375,7 @@ public class MainMenu extends PApplet {
 				
 				stillwindow = false;
 				mouseMoved ();
+				//palabra.setup("window");
 			}
 			
 			
