@@ -1,5 +1,16 @@
 //GOLDILOCKS - ANGÉLICA LUCÍA CRUZ
 
+
+
+//INTERACCIONES											//NOTA SUPER IMPORTANTE PARA EL PROFE:
+//SOPASX3												//Las imagenes son pesaditas por lo que tarda su buen
+//CUADROS (se activa despues de la sopa 3)			    //tiempo en cargar. También comente las lineas :
+//MOLINO												//327 , 343, 350, 357, 372,  387
+//VENTANA												//que son las que me permitirian cambiar
+							 							//las palabras pero si las descomento
+														//deja de funcionar todo y no logré entender por qué.
+																			
+
 package vista;
 //import java.lang.reflect.Array;
 //import java.util.ArrayList;
@@ -378,6 +389,7 @@ public class MainMenu extends PApplet {
 				stillwindow = false;
 			
 				mouseMoved ();
+				Movimiento ();
 				//palabra.setup("window");
 			}
 			
@@ -560,4 +572,10 @@ public class MainMenu extends PApplet {
 		
 		
 	} //MOUSE RELEASED WINDOW
+	
+	public void Movimiento() {
+	
+	}
+	
+	
 } //MAINMENU

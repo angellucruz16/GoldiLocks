@@ -12,8 +12,7 @@ public class Movimiento implements MouseListener , MouseMotionListener {
 	private int y; 
 	
 	public Movimiento (PanelImagen pns ) {
-			pns.addMouseListener(this);
-			pns.addMouseMotionListener(this);
+		
 		
 	} //MOVIMIENTO
 	
@@ -55,7 +54,9 @@ public class Movimiento implements MouseListener , MouseMotionListener {
 	}
 
 	public void Movimiento(PanelImagen panelImagen) {
-		// TODO Auto-generated method stub
+		
+		panelImagen.addMouseListener(this);
+		panelImagen.addMouseMotionListener(this);
 		
 	}
 

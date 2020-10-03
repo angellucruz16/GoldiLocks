@@ -26,6 +26,7 @@ public PanelImagen () {
 		
 	}//CATCH
 	movewindow.Movimiento(this);
+	
 } //PANELIMAGE
 
 } //BUFFEREDIMAGE
