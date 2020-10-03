@@ -5,32 +5,31 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
-public class Movimiento implements MouseListener , MouseMotionListener
-{
+import vista.PanelImagen;
+
+public class Movimiento implements MouseListener , MouseMotionListener {
 	private int x; 
 	private int y; 
-
-	public Movimiento (JPanel... pns )
-	{
-		for(JPanel panel : pns)
-		{
-			panel.addMouseListener(this);
-			panel.addMouseMotionListener(this);
-		}
-	}
+	
+	public Movimiento (PanelImagen pns ) {
+			pns.addMouseListener(this);
+			pns.addMouseMotionListener(this);
+		
+	} //MOVIMIENTO
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-
-
-	}
+		
+	} 
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-
+		
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-
-
+		
+		
 	}
 	@Override
 	public void mousePressed(MouseEvent arg0) 
@@ -40,20 +39,25 @@ public class Movimiento implements MouseListener , MouseMotionListener
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-
-
+		
+		
 	}
 	@Override
 	public void mouseDragged(MouseEvent arg0)
 	{
 		arg0.getComponent().setLocation((arg0.getX() + arg0.getComponent().getX() -x), (arg0.getY() + arg0.getComponent().getY() -y) );
-
+		
 	}
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
+	
+		
+	}
 
-
+	public void Movimiento(PanelImagen panelImagen) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
-}
+} //PUBLIC CLASS MOVIMIENTO

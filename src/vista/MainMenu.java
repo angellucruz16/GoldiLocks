@@ -5,6 +5,7 @@ package vista;
 //import java.util.ArrayList;
 
 import processing.core.PApplet;
+import controlador.Movimiento;
 import modelo.Escena;
 import processing.core.PImage;
 public class MainMenu extends PApplet {	
@@ -73,6 +74,7 @@ public class MainMenu extends PApplet {
 	float angle = 0;
 	
 	Escena palabra;
+	
 	
 	//WINDOW
 	
@@ -374,6 +376,7 @@ public class MainMenu extends PApplet {
 					&& mouseY > 306 && mouseY < 306 + 111) {
 				
 				stillwindow = false;
+			
 				mouseMoved ();
 				//palabra.setup("window");
 			}
